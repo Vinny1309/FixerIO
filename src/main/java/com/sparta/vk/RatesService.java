@@ -7,10 +7,17 @@ public class RatesService {
 
     private RatesDeserialiser ratesDeserialiser;
 
-    public RatesService(){
+    public void RatesService(){
        HTTPManager latestRatesHTTPManager = new HTTPManager();
+       latestRatesHTTPManager.makeAllRatesCall();
        ratesDeserialiser = new RatesDeserialiser(latestRatesHTTPManager.getResponseBody());
     }
+
+//    public void HistoricRatesService(String date){
+//        HTTPManager historicalRatesHTTPManager = new HTTPManager();
+//        historicalRatesHTTPManager.makeAllHistoricalRatesCall(date);
+//        ratesDeserialiser = new RatesDeserialiser(historicalRatesHTTPManager.getResponseBody());
+//    }
 
     public RatesDeserialiser getRatesDeserialiser(){
         return ratesDeserialiser;

@@ -12,12 +12,12 @@ public class HTTPManager {
 
     private CloseableHttpResponse fullResponse;
 
-    public HTTPManager() {
-        makeAllRatesCall();
-    }
+    public HTTPManager() {}
+//        makeAllRatesCall();
+//    }
 
     //Constructor method
-    private void makeAllRatesCall() {
+    public void makeAllRatesCall() {
         try {
         //Handles the call
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -25,6 +25,19 @@ public class HTTPManager {
         HttpGet getLatestRates = new HttpGet(PropertiesReader.getBaseURL() + PropertiesReader.getLatestEndpoint() + PropertiesReader.getAccessURL()+ PropertiesReader.getApiKey());
         //Catches the call
         fullResponse = httpClient.execute(getLatestRates);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void makeAllHistoricalRatesCall(String date) {
+        try {
+            //Handles the call
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            //Does the call
+            HttpGet getHistoricalRates = new HttpGet(PropertiesReader.getBaseURL() + date + PropertiesReader.getAccessURL()+ PropertiesReader.getApiKey());
+            //Catches the call
+            fullResponse = httpClient.execute(getHistoricalRates);
         } catch (IOException e) {
             e.printStackTrace();
         }

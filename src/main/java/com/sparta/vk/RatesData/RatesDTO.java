@@ -9,6 +9,11 @@ public class RatesDTO {
     private String base;
     private String date;
     private Map<String, Double> rates;
+    private boolean historical;
+
+    public boolean isHistorical(){
+        return historical;
+    }
 
     public boolean isSuccess() {
         return success;
